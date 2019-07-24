@@ -17,27 +17,48 @@ public class Garage {
 		Scanner sc = new Scanner(System.in);
 		b.setBrand(sc.nextLine());
 		
+		
 		System.out.println("Entrez le model de la voiture");
-		sc = new Scanner(System.in);
 		b.setModel(sc.nextLine());
 		
+		
 		System.out.println(b + " Carburant = " + b.getCarburant());
+		
+		Car b2 = new GazoilCar();
+		
+		System.out.println("Entrez la marque de la voiture");
+		b2.setBrand(sc.nextLine());
+	
+		
+		System.out.println("Entrez le model de la voiture");
+		b2.setModel(sc.nextLine());
+	
+		
+		
 		
 //		Person s1 = new Seller();
 		Seller s1 = new Seller();
 		System.out.println("Entrez le nom du vendeur");
-		sc = new Scanner(System.in);
 		s1.setName(sc.nextLine());
 		
+		
 		System.out.println("Entrez le prenom du vendeur");
-		sc = new Scanner(System.in);
 		s1.setFirstname(sc.nextLine());
 		
+		
 		System.out.println("Entrez la ref");
-		sc = new Scanner(System.in);
 		s1.setRef(sc.nextLine());
 		
+		
 		s1.sell(b);
+		
+		s1.addInCarSet(b);
+		s1.addInCarSet(b2);
+		
+		System.out.println(s1.getCarSet());
+		
+		sc.close();
+		
 		
 		
 		

@@ -1,5 +1,7 @@
 package garage;
 
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Person {
 	private String name;
@@ -8,6 +10,8 @@ public abstract class Person {
 	private int birthyear;
 	private String mail;
 	private String password;
+	
+	private HashSet<Car> carSet = new HashSet<>();
 	
 //    public abstract String getRef();
 //    public abstract void setRef(String ref);
@@ -85,6 +89,12 @@ public abstract class Person {
 		return name + " " + firstname;
 	}
 	
+	public Set<Car> getCarSet(){
+		return this.carSet;
+	}
 	
+	public boolean addInCarSet(Car car) {
+		return carSet.add(car);
+	}
 	
 }
