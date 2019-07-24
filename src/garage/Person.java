@@ -1,12 +1,18 @@
 package garage;
 
-public class Person {
+
+public abstract class Person {
 	private String name;
 	private String firstname;
 	private String natnum;
 	private int birthyear;
 	private String mail;
 	private String password;
+	
+//    public abstract String getRef();
+//    public abstract void setRef(String ref);
+//    public abstract float getComm();
+//    public abstract void setComm(float comm);
 	
 	public Person() {
 		this.name = "";

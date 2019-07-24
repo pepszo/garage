@@ -1,6 +1,6 @@
 package garage;
 
-public class Car {
+public abstract class Car implements Sellable {
 	
 	private String brand;
 	private String model;
@@ -112,7 +112,7 @@ public class Car {
 	public String getCarburant() {
 		return "";
 	}
-	
+	@Override
 	public double getPrice() {
 		return (maxPrice + minPrice)/2;
 	}

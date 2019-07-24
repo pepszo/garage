@@ -1,27 +1,47 @@
 package garage;
+import java.util.Scanner;
 
 public class Garage {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+//	    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+//	    System.out.println("Enter username");
+//
+//	    String userName = myObj.nextLine();  // Read user input
+//	    System.out.println("Username is: " + userName);  // Output user input 
+		
+		Car b = new BenzineCar();
+		
+		System.out.println("Entrez la marque de la voiture");
+		Scanner sc = new Scanner(System.in);
+		b.setBrand(sc.nextLine());
+		
+		System.out.println("Entrez le model de la voiture");
+		sc = new Scanner(System.in);
+		b.setModel(sc.nextLine());
+		
+		System.out.println(b + " Carburant = " + b.getCarburant());
+		
+//		Person s1 = new Seller();
+		Seller s1 = new Seller();
+		System.out.println("Entrez le nom du vendeur");
+		sc = new Scanner(System.in);
+		s1.setName(sc.nextLine());
+		
+		System.out.println("Entrez le prenom du vendeur");
+		sc = new Scanner(System.in);
+		s1.setFirstname(sc.nextLine());
+		
+		System.out.println("Entrez la ref");
+		sc = new Scanner(System.in);
+		s1.setRef(sc.nextLine());
+		
+		s1.sell(b);
 		
 		
-		Car c = new Car("opel","corsa","red","123-456",10000,15000,2015,5,5);
-		Person p1 = new Person();
-		Person p2 = new Person("nechelput","vivien","950817-4350",1995,"memodebouvy@hotmail.com","jetechiedessus");
 		
-		System.out.println(c);
-		System.out.println("resultat p1 : " + p1);
-		System.out.println(p2);
 		
-		p1.setName("Cambaz");
-		System.out.println("resultat p1 : " + p1);
-		p1.setFirstname("Mehmet");
-		System.out.println("resultat p1 : " + p1);
-		
-		System.out.println("resultat p2 natnum " + p2.getNatnum());
-		
-		System.out.println("resultat p1 natnum " + p1.getNatnum());
 	}
 	
 }
