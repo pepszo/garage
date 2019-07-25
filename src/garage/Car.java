@@ -123,6 +123,33 @@ public abstract class Car implements Sellable {
 				+ minPrice + ", maxPrice=" + maxPrice + ", dateIn=" + dateIn + ", nbDoors=" + nbDoors + ", nbPlace="
 				+ nbPlace + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((refCar == null) ? 0 : refCar.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (refCar == null) {
+			if (other.refCar != null)
+				return false;
+		} else if (!refCar.equals(other.refCar))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 }
