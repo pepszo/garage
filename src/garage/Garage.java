@@ -1,101 +1,99 @@
 package garage;
-import java.util.Scanner;
 import java.util.HashMap;
-
+import java.util.Map;
 public class Garage {
 
-	public static void main(String[] args) {
+	public void testMode() {
 		
-//	    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-//	    System.out.println("Enter username");
-//
-//	    String userName = myObj.nextLine();  // Read user input
-//	    System.out.println("Username is: " + userName);  // Output user input 
-//	---------------------------------------------------------------------------------	
-//		Car b = new BenzineCar();
-//		
-//		System.out.println("Entrez la marque de la voiture");
-//		Scanner sc = new Scanner(System.in);
-//		b.setBrand(sc.nextLine());
-//		
-//		
-//		System.out.println("Entrez le model de la voiture");
-//		b.setModel(sc.nextLine());
-//		
-//		
-//		System.out.println(b + " Carburant = " + b.getCarburant());
-//		
-//		Car b2 = new GazoilCar();
-//		
-//		System.out.println("Entrez la marque de la voiture");
-//		b2.setBrand(sc.nextLine());
-//	
-//		
-//		System.out.println("Entrez le model de la voiture");
-//		b2.setModel(sc.nextLine());
-//	
-//		
-////		Person s1 = new Seller();
-//		Seller s1 = new Seller();
-//		System.out.println("Entrez le nom du vendeur");
-//		s1.setName(sc.nextLine());
-//		
-//		
-//		System.out.println("Entrez le prenom du vendeur");
-//		s1.setFirstname(sc.nextLine());
-//		
-//		
-//		System.out.println("Entrez la ref");
-//		s1.setRef(sc.nextLine());
-//		
-//		
-//		s1.sell(b);
-//		
-//		s1.addInCarSet(b);
-//		s1.addInCarSet(b2);
-//		
-//		System.out.println(s1.getCarSet());
-//		
-//		sc.close();
-//	---------------------------------------------------------------------------------	
+//      Declarations et instanciations des objets 
 		
+		Car bc = new BenzineCar("bmw","x5","rouge","123",10000,15000,2005,4,5); 
+		Car gc = new GazoilCar("opel","corsa","noir","456",9000,12000,2010,5,5);
+		Car doublonBc = new BenzineCar("mercedes","","rouge","123",10000,15000,2005,4,5); 
+		
+		Seller s = new Seller("mouloud","jean","42510-325",1986,"Mouloud@hotmail.com","cassé","1",5);
+		Customer c = new Customer("ark","burak","51236-452",1990,"Ark@hotmail.com","Réparer","1");
+		
+		CarToy ct = new CarToy(15);
+
+//		Declaration et instanciations des Maps et Collections		
 		
 		HashMap<String, Car> carInGarage = new HashMap<>();
+		HashMap<String, Car> benzineInGarage = new HashMap<>();
+		HashMap<String, Car> gazoilInGarage = new HashMap<>();
 		
-		Seller s1 = new Seller("mouloud","jean","42510-325",1986,"tg@hotmail.com","cassé","1",5);
+		HashMap<String, Person> personInGarage = new HashMap<>();
+		HashMap<String, Person> sellerInGarage = new HashMap<>();
+		HashMap<String, Person> customerInGarage = new HashMap<>();
 		
-		Car a = new BenzineCar("bmw","x5","rouge","123455",10000,15000,2005,4,5);
-		Car b = new BenzineCar("opel","astra","rouge","123",10000,15000,2005,4,5);
+		
+//	---------------------------------------------------------------------------------------------------
+		
+		
+//		Manipulation des Maps et Collections pour les voitures		
 	
-
-		carInGarage.put(b.getRefCar(), b);
+		if(!carInGarage.containsKey(bc.getRefCar()))	carInGarage.put(bc.getRefCar(), bc);
+		if(!carInGarage.containsKey(gc.getRefCar()))	carInGarage.put(gc.getRefCar(), gc);
 		
-		if(!carInGarage.containsKey(a.getRefCar())){
+		if(!carInGarage.containsKey(doublonBc.getRefCar()))	{
 			
-			carInGarage.put(a.getRefCar(), a);
+			carInGarage.put(doublonBc.getRefCar(), doublonBc);
 			
 		}
 		
-		if(carInGarage.containsKey(a.getRefCar())) {
+		else {
 			
-			s1.addInCarSet(a);
+			System.out.println("La référence existe déjà! Voiture non ajoutée");
+			
 		}
 		
-		s1.addInCarSet(b); // On peut ajouter 2 objets si un seul champs est different -> il faut overrider equals et HashCode
+		System.out.println("Les voitures dans le garage : " + carInGarage.keySet()); // Affichage des voitures dans le garage
 		
-		System.out.println(s1.getCarSet());
-		
-		
-//		if(carInGarage.get(a.getRefCar()) == null) {
-//			
-//			carInGarage.put(a.getRefCar(), a);
-//			
-//		}
+		for(Map.Entry<String, Car> carFound : carInGarage.entrySet()) {
+			
+			Car cf = carFound.getValue();
 
-		System.out.println(carInGarage.keySet());
-		System.out.println(carInGarage.values());
-		System.out.println(carInGarage.size());
+			
+			if(cf.getCarburant() == "Gazoil") {
+				
+				if(!gazoilInGarage.containsKey(cf.getRefCar()))gazoilInGarage.put(cf.getRefCar(), cf);
+				
+			}
+			
+			else {
+				
+				if(!benzineInGarage.containsKey(cf.getRefCar()))benzineInGarage.put(cf.getRefCar(), cf);
+				
+			}
 		
+			
+		}
+		
+		System.out.println("Les benzines dans le garage : " + benzineInGarage.keySet()); // Affichage des gazoils dans le garage
+		
+		System.out.println("Les gazoils dans le garage : " + gazoilInGarage.keySet()); // Affichage des benzines dans le garage
+		
+
+//  -----------------------------------------------------------------------------------------------------------------------------------------		
+		
+		
+//		Vente d'une voiture
+		
+		
+		if(!sellerInGarage.containsKey(s.getNatnum()))	sellerInGarage.put(s.getNatnum(), s);
+		if(!customerInGarage.containsKey(c.getNatnum()))  customerInGarage.put(c.getNatnum(), c);
+		
+		s.sell(gc);
+		c.buy(bc);
+		
+		System.out.println(s.getCarSet());
+		System.out.println(c.getCarSet());
 	}
 	
+	public void prodMode() {
+		
+		System.out.println("En construction");
+		
+	}
+
 }

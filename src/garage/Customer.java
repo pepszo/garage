@@ -28,5 +28,10 @@ public class Customer extends Person {
 		
 	}
 	
+	public void buy(Car car) {
+		System.out.println("La voiture de marque " + car.getBrand() + " et de modèle " + car.getModel() + " référencée " + car.getRefCar() + " a été achetée par "+ this.toString());
+		this.addInCarSet(car);
+	}
+	
 
 }

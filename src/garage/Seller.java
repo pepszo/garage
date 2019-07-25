@@ -40,7 +40,8 @@ public class Seller extends Person {
 	}
 	
 	public void sell(Car car) {
-		System.out.println("La voiture de marque " + car.getBrand() + " et de modèle " + car.getModel() + " référencée " + car.getRefCar() + "a été vendue par "+ this.toString());
+		System.out.println("La voiture de marque " + car.getBrand() + " et de modèle " + car.getModel() + " référencée " + car.getRefCar() + " a été vendue par "+ this.toString());
+		this.addInCarSet(car);
 	}
 	
 	
