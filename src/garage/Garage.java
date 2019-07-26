@@ -2,7 +2,32 @@ package garage;
 import java.util.HashMap;
 import java.util.Map;
 public class Garage {
+	
+//	Declaration et instanciations des Maps et Collections		
+	
+	HashMap<String, Car> carInGarage = new HashMap<>();
+	HashMap<String, Car> benzineInGarage = new HashMap<>();
+	HashMap<String, Car> gazoilInGarage = new HashMap<>();
+	
+	HashMap<String, Person> personInGarage = new HashMap<>();
+	HashMap<String, Person> sellerInGarage = new HashMap<>();
+	HashMap<String, Person> customerInGarage = new HashMap<>();
 
+	public boolean addCarInGarage(Car car) throws Exception {
+		
+		if(carInGarage.containsKey(car.getRefCar())) {
+			
+			throw new Exception("Doublon");
+		}
+			
+			
+		
+		carInGarage.put(car.getRefCar(), car); // Ajouter la voiture car dans carInGarage
+		
+		return true;
+				
+	}
+	
 	public void testMode() {
 		
 //      Declarations et instanciations des objets 
@@ -16,15 +41,6 @@ public class Garage {
 		
 		CarToy ct = new CarToy(15);
 
-//		Declaration et instanciations des Maps et Collections		
-		
-		HashMap<String, Car> carInGarage = new HashMap<>();
-		HashMap<String, Car> benzineInGarage = new HashMap<>();
-		HashMap<String, Car> gazoilInGarage = new HashMap<>();
-		
-		HashMap<String, Person> personInGarage = new HashMap<>();
-		HashMap<String, Person> sellerInGarage = new HashMap<>();
-		HashMap<String, Person> customerInGarage = new HashMap<>();
 		
 		
 //	---------------------------------------------------------------------------------------------------
@@ -32,24 +48,54 @@ public class Garage {
 		
 //		Manipulation des Maps et Collections pour les voitures		
 	
-		if(!carInGarage.containsKey(bc.getRefCar()))	carInGarage.put(bc.getRefCar(), bc);
-		if(!carInGarage.containsKey(gc.getRefCar()))	carInGarage.put(gc.getRefCar(), gc);
 		
-		if(!carInGarage.containsKey(doublonBc.getRefCar()))	{
+		
+		try {
 			
-			carInGarage.put(doublonBc.getRefCar(), doublonBc);
+			addCarInGarage(bc);
+			
+		}catch(Exception e) {
+		
+			System.err.println(e.getMessage());
 			
 		}
 		
-		else {
+		try {
 			
-			System.out.println("La référence existe déjà! Voiture non ajoutée");
+			addCarInGarage(gc);
+			
+		}catch(Exception e) {
+		
+			
+			System.err.println(e.getMessage());
 			
 		}
+		
+		try {
+			
+			addCarInGarage(doublonBc);
+			
+		}catch(Exception e) {
+		
+			
+			System.err.println(e.getMessage());
+			
+		}
+		
+//		addCarInGarage(bc);
+//		addCarInGarage(gc);
+//		addCarInGarage(doublonBc);
+		
+			
+			
+			
 		
 		System.out.println("Les voitures dans le garage : " + carInGarage.keySet()); // Affichage des voitures dans le garage
 		
-		for(Map.Entry<String, Car> carFound : carInGarage.entrySet()) {
+		
+		// Parcourir une map
+		
+		for(Map.Entry<String, Car> carFound : carInGarage.entrySet()) {  
 			
 			Car cf = carFound.getValue();
 
