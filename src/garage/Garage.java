@@ -1,6 +1,7 @@
 package garage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 public class Garage {
 	
 //	Declaration et instanciations des Maps et Collections		
@@ -27,6 +28,105 @@ public class Garage {
 		return true;
 				
 	}
+	
+	
+	public void menu() {
+		
+		int choix;
+		Scanner sc = new Scanner(System.in);
+		
+		
+		do {
+			System.out.print("1 - Ajouter une benzineCar \n2 - Ajouter une gazoilCar \n3 - Fin du programme");
+			choix = sc.nextInt();
+			
+			switch(choix) {
+			
+			case 1 : 
+				addBenzineCar();
+				break;
+				
+			case 2 :
+				System.out.println("In progress");
+				break;
+				
+			case 3 :
+				System.out.println("Ciao");
+				sc.close();
+				break;
+				
+			default : System.out.println("Choix invalide");	
+			}
+			
+		}while(choix != 3);
+		
+	}
+	
+	public void addBenzineCar() {
+		
+		String brand;
+		String model;
+		String color;
+		String refCar;
+		double minPrice;
+		double maxPrice;
+		int dateIn;
+		int nbDoors;
+		int nbPlace;
+		
+		
+		System.out.println("Entrez la marque de la voiture");
+		Scanner sc = new Scanner(System.in);
+		brand = sc.nextLine();
+		
+		
+		System.out.println("Entrez le model de la voiture");
+		model = sc.nextLine();
+		
+		
+		System.out.println("Entrez la couleur de la voiture");
+		color = sc.nextLine();
+		
+		
+		System.out.println("Entrez la référence de la voiture");
+		refCar = sc.nextLine();
+		
+		
+		System.out.println("Entrez le prix minimum de la voiture");
+		minPrice = sc.nextDouble();
+		
+		
+		System.out.println("Entrez le prix max de la voiture");
+		maxPrice = sc.nextDouble();
+		
+		
+		System.out.println("Entrez la date de la voiture");
+		dateIn = sc.nextInt();
+		
+		
+		System.out.println("Entrez le nombre de portes de la voiture");
+		nbDoors = sc.nextInt();
+		
+		
+		System.out.println("Entrez le nombre de places dans la voiture");
+		nbPlace = sc.nextInt();
+		
+		sc.close();
+		
+		Car c = new BenzineCar(brand, model, color, refCar, minPrice, maxPrice, dateIn, nbDoors, nbPlace);
+		
+		
+		try {
+			
+			addCarInGarage(c);
+			
+		}catch(Exception e) {
+		
+			System.err.println(e.getMessage());
+		}
+		
+	}
+	
 	
 	public void testMode() {
 		
@@ -139,6 +239,9 @@ public class Garage {
 	public void prodMode() {
 		
 		System.out.println("En construction");
+		
+		
+		menu();
 		
 	}
 
